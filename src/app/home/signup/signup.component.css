@@ -1,0 +1,300 @@
+.container{
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  padding-top: 10px;
+}
+
+#register-container {
+  -webkit-animation-name: fadein;
+  -moz-animation-name: fadein;
+  -o-animation-name: fadein;
+  animation-name: fadein;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.background {
+  /* background: url("assets/languages/100-Common/images/register_bg.jpg") center center; */
+  background-size: cover;
+}
+
+.register-panel{
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+.card{
+  padding: 10px 0 30px;
+  font-size: 15px;
+}
+
+.card h2{
+  text-align: center;
+}
+
+.feature{
+  display: flex;
+  /*width: 100%;*/
+  flex: 1;
+  margin-top: 50px;
+}
+
+.feature .icon{
+  width: 40px;
+}
+
+.feature .icon i{
+  font-size: 2.6em;
+}
+
+.feature .desc{
+  flex: 1;
+  margin-left: 10px;
+}
+
+.feature .desc p{
+  margin-top: 17px;
+}
+
+.feature .desc h4{
+  margin-top: 8px;
+}
+
+.form-part{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-left: 25px;
+}
+
+.form-part .row{
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-flow: row;
+}
+
+.form-part .row .mat-input-container{
+  width: 100%;
+}
+
+.form-part .row i{
+  margin-right: 13px;
+  position: relative;
+  top: 8px;
+  color: #555;
+}
+
+.form-part .socials{
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+
+.form-part .row button{
+  margin-top: 15px;
+}
+
+.mb-label{
+  display: block;
+  font-weight: 500;
+}
+
+.mb-input-group{
+  display: inline;
+}
+
+.mb-input-group .custom-select{
+  width: 60px;
+}
+
+.custom-select {
+  height: auto;;
+}
+
+.mb-icon{
+  margin-bottom: 9px;
+}
+
+.mb-margintop{
+  margin-top: 15px;
+}
+
+.mb-radio-btn {
+  margin: 0 10px;
+}
+
+.mb-cc{
+  margin-top: 30px;
+  width: 113px;
+  overflow: hidden;
+}
+
+.mb-floatright{
+  text-align: right;
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+#passwordGroup > div {
+  width: 100%;
+}
+
+.amount-due {
+  margin-top: 15px;
+  margin-bottom: 6px;
+}
+
+.amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9c27b0;
+    border-radius: 3px;
+    font-size: 24px;
+    font-weight: bold !important;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.stripe-badge {
+  margin-bottom: 5px;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+}
+
+#termsandconditions .modal-dialog,
+#privacypolicy .modal-dialog {
+  height: 94%;
+}
+
+#termsandconditions .modal-content,
+#privacypolicy .modal-content {
+
+  height: 100%;
+}
+
+#termsandconditions .modal-body,
+#privacypolicy .modal-body {
+
+  height: 82%;
+  overflow: hidden;
+  padding-right: 0;
+  font-family: 'Avenir Next' !important;
+}
+
+.language{
+  margin-right: 15px;
+}
+
+.failure {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.registration-status {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.registration-status .step {
+  font-weight: 600;
+}
+
+#exp-date  {
+  margin-top: 17px;
+}
+
+#payment {
+  margin-top: 20px;
+}
+
+.pay-row {
+  flex-flow: row;
+}
+
+.payment-group {
+  height: 100%;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+}
+
+#login {
+  position: absolute;
+  right: 20px;
+}
+
+.type-name {
+  margin: 0 20px 0 5px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.term-links {
+  display: inline;
+}
+
+#expirationYear {
+  width: 90px;
+}
+
+.plan-type {
+  display: inline;
+}
+
+/* ----media query----- */
+@media only screen and (max-width: 800px) {
+
+  #register-container {
+    padding: 0;
+  }
+
+  .form-part {
+    padding-left: 0;
+  }
+
+  .form-part .row {
+    flex-flow: wrap;
+  }
+  
+  .pay-row {
+    flex-flow: wrap;
+  }
+
+  .card-details {
+    margin-top: 20px;
+  }
+
+  .term-links {
+    display: block;
+  }
+
+  #signup {
+    width: 100%;
+    font-size: 20px;
+    padding: 5px;
+  }
+
+  .plan-type {
+    display: block;
+  }
+}

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Edit Field</h1>
+<div mat-dialog-content>
+  <input type="text" [(ngModel)]="data.value">
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="sd-btn" (click)="onPrimaryClick()">Save</button>
+  <button mat-button class="sd-btn-sec" (click)="onSecondaryClick()">Cancel</button>
+</div>

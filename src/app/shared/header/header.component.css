@@ -1,0 +1,72 @@
+#dashboard-header {
+  background: #006341;
+  color: #fff;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.logo .name {
+  font-size: 27px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.logo img {
+  margin-right: 10px;
+}
+
+#toggle-menu {
+  display: none;
+}
+
+.link {
+  color: #fff;
+}
+
+.acitons {
+  display: flex;
+  align-items: center;
+}
+
+.acitons .link:hover {
+  text-decoration: underline !important;
+}
+
+.action {
+  margin-right: 10px;
+}
+
+.action-icon {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+#username {
+  margin-left: 20px;
+}
+
+#logo-img {
+  margin-right: 10px;
+  width: 60px;
+  height: 40px;
+  border-radius: 0;
+}
+
+/* ----mewdia query----- */
+@media only screen and (max-width: 800px) {
+  #toggle-menu {
+    display: block;
+    font-size: 20px;
+  }
+
+  .acitons {
+    display: none;
+  }
+}

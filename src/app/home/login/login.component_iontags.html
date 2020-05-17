@@ -1,0 +1,167 @@
+<ion-header>
+    <div class="container">
+        <div class="background"></div>
+        <div class="container">
+        </div>
+    </div>
+    <!--   <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Login</ion-title>
+  </ion-toolbar>  -->
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="loginForm">
+        <div class="row justify-center">
+            <div class="col-lg-4  col-md-6 col-sm-8 text-center">
+                <a class="logo" [routerLink]="['/']">
+                    <div id="logo-img"></div>
+                    <div class="logo-name">Spelldone</div>
+                </a>
+            </div>
+        </div>
+        <div class="row justify-center" id="learnmode">
+            <div id="trial" class="" (click)="signUpForTrail()">
+                FREE 14 day trial
+            </div>
+        </div>
+
+        <ion-card style="padding-left: 5%;padding-right:5%">
+            <ion-item lines="full">
+                <!--<ion-icon name="mail"></ion-icon> -->
+                <ion-label position="floating">Email Address*</ion-label>
+                <ion-input type="text" required></ion-input>
+            </ion-item>
+
+            <ion-item lines="full">
+                <!--  <ion-icon name="alert"></ion-icon>-->
+                <ion-label position="floating">Password*</ion-label>
+
+                <ion-input type="password" required></ion-input>
+            </ion-item>
+            <ion-row>
+                <ion-col>
+                    <ion-button type="Login" color="success" expand="block" (click)="login()">Login</ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button type="Register" color="success" expand="block" (click)="register()">Regsiter</ion-button>
+
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="row card-footer-row">
+                        <div class="col-md-6 offset-md-3 link" (click)="forgotPassword()">Forgot password?</div>
+                        <div class="col-md-6 offset-md-3 link">
+                            <div id="guest" (click)="continueAsGuest()">Continue as guest</div>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-card-content>
+                <div class="customBtn customGPlusSignIn col-sm-10 offset-sm-1" (click)="signInWithGoogle()">
+                    <span class="icon gicon"></span>
+                    <span class="buttonText">Sign in with Google</span>
+                </div>
+            </ion-card-content>
+
+            <ion-card-content>
+                <div class="customBtn customGPlusSignIn col-sm-10 offset-sm-1" (click)="signInWithFacebook()">
+                    <span class="icon ficon"></span>
+                    <span class="buttonText">Sign in with Facebook</span>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+    </form>
+</ion-content>
+
+<!--<div class="container">
+  <div class="background"></div>
+  <div class="container">
+      <div class="row justify-center">
+          <div class="col-lg-4  col-md-6 col-sm-8 text-center">
+              <a class="logo" [routerLink]="['/']">
+                  <div id="logo-img"></div>
+                  <div class="logo-name">Spelldone</div>
+              </a>
+          </div>
+      </div>
+      <div class="row justify-center" id="learnmode">
+          <div id="trial" class="" (click)="signUpForTrail()">
+              FREE 14 day trial
+          </div>
+      </div>
+      <div class="row justify-content-md-center justify-content-sm-center">
+          <div class="col-lg-4  col-md-6" [ngClass]="{'col-sm-8': !isMobileLandscape, 'col-sm-12': isMobileLandscape}">
+              <div class="card">
+                  <form [formGroup]="loginForm">
+                      <div class="card-form">
+                          <div class="form-row">
+                              <i class="material-icons">email</i>
+                              <mat-form-field color="accent">
+                                  <input (keydown.enter)="login()" id="email" type="text" required [(ngModel)]="username" matInput placeholder="Email address" formControlName="email" />
+                              </mat-form-field>
+                          </div>
+                          <div class="form-row">
+                            
+                              <i class="material-icons">lock_outline</i>
+                              <mat-form-field color="accent">
+                                  <input (keydown.enter)="login()" id="password" type="password" required [(ngModel)]="password" matInput placeholder="Password" formControlName="password" />
+                              </mat-form-field>
+                          </div>
+                      </div>
+
+                      <div class="card-footer">
+                          <div class="row card-footer-row">
+                              <div class="col-sm-6 btn-wrap">
+                                  <button mat-button (click)="login()" [disabled]="!loginForm.valid">Login</button>
+                              </div>
+                              <div class="col-sm-6 btn-wrap">
+                                  <button mat-button (click)="register()">Register</button>
+                              </div>
+                          </div>
+                          <div class="row card-footer-row">
+                              <div class="col-md-6 offset-md-3 link" (click)="forgotPassword()">Forgot password?</div>
+                              <div class="col-md-6 offset-md-3 link">
+                                  <div id="guest" (click)="continueAsGuest()">Continue as guest</div>
+                              </div>
+                          </div>
+
+                          <div class="row card-footer-row">
+                              <div class="customBtn customGPlusSignIn col-sm-10 offset-sm-1" (click)="signInWithGoogle()">
+                                  <span class="icon gicon"></span>
+                                  <span class="buttonText">Sign in with Google</span>
+                              </div>
+                          </div>
+
+                          <div class="row card-footer-row">
+                              <div class="customBtn customGPlusSignIn col-sm-10 offset-sm-1" (click)="signInWithFacebook()">
+                                  <span class="icon ficon"></span>
+                                  <span class="buttonText">Sign in with Facebook</span>
+                              </div>
+                          </div>
+
+                      </div>
+                  </form>
+
+              </div>
+          </div>
+      </div>
+
+      <div id="footer" class="row justify-content-between">
+          <div class="col-xs-6" style="flex:1">
+              <span>© 2019 G2L LLC. All rights reserved</span>
+          </div>
+          <div class="col-xs-4 more-links">
+              <span class="link">
+        <a href="mailto:support@great2learn.com">
+          Contact
+        </a>
+      </span>
+          </div>
+      </div>
+  </div>
+</div>-->

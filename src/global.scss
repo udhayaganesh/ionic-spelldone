@@ -1,0 +1,228 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+/* Core CSS required for Ionic components to work properly */
+
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$SpelldoneApp-primary: mat-palette($mat-indigo);
+$SpelldoneApp-accent: mat-palette($mat-pink, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$SpelldoneApp-warn: mat-palette($mat-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$SpelldoneApp-theme: mat-light-theme($SpelldoneApp-primary, $SpelldoneApp-accent, $SpelldoneApp-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($SpelldoneApp-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@font-face {
+    font-family: "Lato";
+    src: url("/assets/fonts/lato/Lato-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lato-Bold";
+    src: url("/assets/fonts/lato/Lato-Bold.ttf");
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    overscroll-behavior: contain;
+    -webkit-touch-callout: none;
+    font-family: Lato !important;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+li {
+    list-style-type: none;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.sd-btn {
+    padding: 10px 5px;
+    min-width: 100px;
+    background: #006341;
+    border: none;
+    color: #fff;
+    font-size: 15px !important;
+    border-radius: 4px !important;
+}
+
+.sd-btn-sec {
+    padding: 10px 5px;
+    min-width: 100px;
+    background: #e2e2e2;
+    border: none;
+    color: #555;
+    font-size: 15px !important;
+    border-radius: 4px !important;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+#logo-img {
+    background: #006341;
+    display: inline-block;
+    border: 1px solid #006341;
+    border-radius: 91px;
+    background-image: url(assets/images/Logo-Full-White.png);
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-size: 46px;
+    background-repeat: no-repeat;
+}
+
+.disabled-text {
+    color: #aaa;
+}
+
+.hightlight {
+    color: #ffcc32 !important;
+}
+
+#username {
+    font-size: 17px;
+    padding: 0;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    height: 32px;
+}
+
+#dialog-actions {
+    margin-top: 15px !important;
+}
+
+
+/*------- material CSS override - start--------*/
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-dialog-container {
+    padding: 0 0 10px 0 !important;
+}
+
+.mat-dialog-title {
+    padding: 5px 12px !important;
+    background: #006341 !important;
+    color: #fff !important;
+}
+
+.mat-dialog-content,
+.mat-dialog-actions {
+    margin: 0 !important;
+    padding: 0 25px !important;
+}
+
+
+/*------- material CSS override - end--------*/
+
+
+/* ----media query----- */
+
+@media only screen and (max-width: 800px) {
+    .terms .mat-checkbox-inner-container {
+        margin-top: 4px;
+    }
+}
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+html,
+body {
+    height: 99%;
+    overflow-y: overlay;
+     ::-webkit-scrollbar {
+        display: none;
+    }
+    //  background-color: red !important;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -1,0 +1,296 @@
+.container {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    -webkit-animation-name: fadein;
+    -moz-animation-name: fadein;
+    -o-animation-name: fadein;
+    animation-name: fadein;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.card {
+    position: relative;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 29px;
+}
+
+#learn-more {
+    color: white;
+    background-color: #11b0ca;
+    padding: 4px 16px;
+    font-size: 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+#learn-more:hover {
+    color: #11b0ca;
+    background-color: #fff;
+    border: 1px solid #11b0ca;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    font-size: 12px;
+}
+
+#trial {
+    padding: 10px 30px;
+    background: rgb(247, 125, 0);
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.card-header {
+    position: relative;
+    overflow: hidden;
+    top: -40px;
+    width: 100%;
+    border-radius: 3px;
+    background: #006341;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 99, 65, 0.48);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-header h4 {
+    font-weight: 400;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.social-btns i {
+    font-size: 21px;
+    color: #fff;
+}
+
+.social-btns button {
+    margin: 0 8px;
+}
+
+.tip {
+    margin-top: -20px;
+}
+
+.form-row,
+.card-form,
+.mat-input-container {
+    width: 100%;
+}
+
+.card-form {
+    padding: 5px;
+}
+
+.card-form .mat-form-field {
+    flex: 1;
+}
+
+.form-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 13px;
+}
+
+.form-row i {
+    position: relative;
+    top: -5px;
+    margin-right: 15px;
+    color: #555;
+}
+
+.card-footer {
+    margin: 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.card-footer button {
+    color: #fff;
+    margin: 0 10px;
+    background-color: #006341;
+    width: 85px;
+}
+
+.card-footer button:hover {
+    color: #fff;
+    background-color: #37af86;
+}
+
+#email,
+#password {
+    font-size: 15px;
+    height: 20px;
+}
+
+.link {
+    margin: 20px 0 0 0;
+    color: darkblue;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.card-footer-row {
+    flex-wrap: nowrap;
+}
+
+#alertModal .modal-body {
+    font-size: 14px;
+    text-align: center;
+}
+
+.modalCenter {
+    display: flex !important;
+    align-items: center;
+}
+
+.logo-name {
+    color: #006341;
+    font-size: 25px;
+}
+
+#logo-img {
+    margin-top: 20px;
+}
+
+.customBtn {
+    display: flex;
+    align-items: center;
+    background: white;
+    color: #444;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.customBtn:hover {
+    cursor: pointer;
+}
+
+span.icon {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    background-position: center;
+}
+
+span.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+}
+
+span.gicon {
+    background: url('/assets/images/g-normal.png') transparent 5px 50% no-repeat;
+}
+
+span.ficon {
+    background: url('/assets/images/fb-logo.svg') transparent 5px 50% no-repeat;
+}
+
+button:disabled {
+    background-color: #37af86 !important;
+}
+
+
+/* ----media query for iphone 5/SE----- */
+
+@media only screen and (max-width: 320px) {
+    #logo-img {
+        margin-top: 10px;
+    }
+    .form-row {
+        margin-top: 0;
+        flex-flow: row;
+    }
+    .card-header {
+        padding: 10px;
+    }
+    #footer {
+        font-size: 10px;
+    }
+}
+
+
+/* CSS for mobile landscape view */
+
+@media only screen and (max-height: 411px) {
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 24px;
+    }
+    #logo-img {
+        margin-top: 0;
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    .card {
+        margin-top: 0;
+        padding: 0 5px;
+    }
+    .card-header {
+        padding: 0;
+        top: -15px;
+        width: 50%;
+    }
+    .card-header h4 {
+        margin: 0;
+        font-size: 22px;
+    }
+    .form-row {
+        margin-top: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .card-footer {
+        margin: 0 10px;
+    }
+    .card-form {
+        display: flex;
+    }
+    .card-footer-row .btn-wrap {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,194 @@
+#home-container {
+    -webkit-animation-name: fadein;
+    -moz-animation-name: fadein;
+    -o-animation-name: fadein;
+    animation-name: fadein;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+#img-wrap {
+    padding-bottom: 10px;
+}
+
+.name {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+#right-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+#home-img {
+    background-image: url('/assets/images/Logo-Full-White.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 24px;
+    height: calc(100% - 64px);
+    // margin-top: 60px;
+}
+
+#topbar {
+    border-bottom: 1px solid #ddd;
+    background: #006341;
+    color: #fff;
+}
+
+#home-options {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#home-options a {
+    margin: 0 10px;
+    color: #fff;
+}
+
+#home-options a:hover {
+    text-decoration: underline !important;
+}
+
+#home-text-content {
+    flex: 1;
+    overflow: auto;
+    scroll-behavior: smooth;
+    margin-top: 10px;
+}
+
+.content-section {
+    margin-bottom: 35px;
+}
+
+li {
+    list-style-type: square;
+}
+
+#logo {
+    background: #006341;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#logo-img {
+    width: 70px;
+    height: 50px;
+}
+
+#home-options a.link2 {
+    color: #ffcc32;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+#username {
+    margin-left: 60px;
+}
+
+#btn-group {
+    display: flex;
+    justify-content: center;
+    //margin-top: 17%; //???
+}
+
+#trial {
+    background: rgb(247, 125, 0);
+    color: #fff;
+    padding: 13px 65px;
+    border: 0;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+/* ----mewdia query----- */
+
+@media only screen and (max-width: 800px) {
+    #btn-group {
+        margin-top: 55px; //???
+    }
+    #img-wrap {
+        height: 50%;
+    }
+    #topbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid #eee;
+    }
+    #home-text-content {
+        /* height: calc(100% - 396px); */
+        overflow: hidden;
+        flex: auto;
+        margin-bottom: 50px;
+        scroll-behavior: smooth;
+    }
+    #right-panel {
+        display: block;
+        flex-direction: unset;
+    }
+    #home-img {
+        background-position: center; //???0px -92px;
+        height: calc(100% - 50px);
+        // margin-top: 60px; ???
+    }
+    #logo {
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+    }
+    #home-options a {
+        margin: 0 6px;
+        font-size: 14px;
+    }
+    #username {
+        width: 20px;
+        min-width: auto;
+        border-bottom: 0;
+        margin-bottom: 4px;
+        margin-left: 10px;
+        font-size: 22px;
+    }
+    #dashboard>span {
+        display: none;
+    }
+    #dashboard {
+        font-size: 22px !important;
+        margin-top: 4px !important;
+    }
+}
+
+
+/* CSS for mobile landscape view */
+
+@media only screen and (max-height: 411px) {
+    #home-img {
+        width: 208px;
+        height: 150px;
+        background-position: 1px -59px;
+        background-size: 208px;
+        justify-self: center;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #btn-group {
+        margin-top: 60px; //???
+    }
+}

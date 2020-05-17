@@ -1,0 +1,81 @@
+<div class="container-fluid h100" id="home-container">
+
+    <div class="row h100">
+        <div class="col-md-6 col-sm-12 h100" id="img-wrap">
+            <div class="row" id="logo">
+                <div id="logo-img"></div>
+                <span class="name">Spelldone</span>
+            </div>
+            <div id="btn-group">
+                <a id="trial" [routerLink]="['login']">FREE 14 DAY TRIAL</a>
+            </div>
+            <div id="home-img" class="h100"></div>
+        </div>
+        <div class="col-md-6 col-sm-12 h100" id="right-panel">
+            <div class="row" id="topbar">
+                <div class="col-12 col-md-10 offset-md-2" id="home-options">
+                    <a [class.active]="active=='mission'" (click)="active='mission'" href="#mission">Mission</a>
+                    <a [class.active]="active=='whyspelldone'" (click)="active='whyspelldone'" href="#whyspelldone">Why
+              Spelldone</a>
+                    <a [class.active]="active=='features'" (click)="active='features'" href="#features">Features</a>
+
+                    <ng-container *ngIf="!userData && !isLoading">
+                        <a class="link2" [routerLink]="['login']">Login</a>
+                        <a class="link2" [routerLink]="['signup']">Register</a>
+                    </ng-container>
+
+                    <ng-container *ngIf="userData && !isLoading">
+                        <a class="link2" [routerLink]="['dashboard']" id="dashboard">
+                            <i class="fa fa-table"></i>
+                            <span>Dashboard</span>
+                        </a>
+
+                        <button id="username" class="hightlight" mat-button [matMenuTriggerFor]="menu">
+                <i class="fa fa-ellipsis-v"></i>
+              </button>
+                        <mat-menu #menu="matMenu">
+                            <a [routerLink]="['/profile']">
+                                <button mat-menu-item>
+                    <i class="fa fa-user-circle action-icon"></i>
+                    Profile
+                  </button>
+                            </a>
+                            <mat-divider></mat-divider>
+                            <button mat-menu-item (click)="logout()">
+                  <i class="fa fa-sign-out action-icon"></i>
+                  Logout
+                </button>
+                        </mat-menu>
+                    </ng-container>
+                </div>
+            </div>
+            <div id="home-text-content">
+                <section class="content-section" id="mission">
+                    <h2>Mission</h2>
+                    <p>Our Mission is to provide a reliable spelling bee resource at a low-cost without compromising any quality feature, volume, and accessibility.</p>
+                </section>
+                <section class="content-section" id="whyspelldone">
+                    <h2>Why Spelldone?</h2>
+                    <ul>
+                        <li>Designed and tested by National Champions, Finalists and experienced Teachers</li>
+                        <li>Reasonable Price </li>
+                        <li>Professional & licensed content and audio (24K plus words) </li>
+                        <li>Our commitment to make Spelldone better</li>
+                    </ul>
+                </section>
+                <section class="content-section" id="features">
+                    <h2>Features</h2>
+                    <ul>
+                        <li>“Easy to use” interface</li>
+                        <li>Definition, Parts of Speech, Etymology with Language of Origin</li>
+                        <li>Pronunciation and sentence for word usage</li>
+                        <li>User activity logging at each word level</li>
+                        <li>Practice and Quiz Modes</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+</div>

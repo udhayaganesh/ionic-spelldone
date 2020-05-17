@@ -1,0 +1,175 @@
+.profile-container {
+  -webkit-animation-name: fadein;
+  -moz-animation-name: fadein;
+  -o-animation-name: fadein;
+  animation-name: fadein;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.info-header {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #434443;
+  font-family: sans-serif;
+  background: rgb(245, 245, 245);
+  width: 100%;
+  border-bottom: 1px solid #e6e5e5;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.info-block {
+  border: 1px solid e2e4e2;
+  margin-bottom: 18px;
+  padding-top: 0;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0px 3px 4px 0px #bdbcbc;
+  animation-name: onload;
+  animation-duration: 1s;
+}
+
+.mb-field {
+  margin-bottom: 5px;
+}
+
+.field-label {
+  font-weight: 600;
+}
+
+.field-label, .field-value {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: #434443;
+}
+
+.edit-link {
+  font-size: 13px;
+  color:     blue;
+  text-decoration: underline;
+  margin-left:  20px;
+  cursor: pointer;
+}
+.cancel{
+  margin-left: 0px;
+}
+
+.mb-row-header, .modal-field-label {
+  font-size: 14px;
+  font-family: sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.mb-row-header .col-sm-2, .mb-row .col-sm-2{
+  border-left: 1px solid black;
+}
+
+.mb-row-header, .mb-row{
+  height: 25px;
+} 
+
+.mb-row-header > div , .mb-row > div {
+  display: flex;
+  align-items: center;
+}
+
+.mb-lang-row {
+  padding: 5px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.row.mb-lang-row > div {
+  font-weight: 600;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.info-sub-header{
+  padding:  15px 0;
+  color: green;
+  font-size: 15px;
+}
+
+.modal-field-value, .sub-plans > div{
+  font-weight: 600;
+  font-size: 14px;
+  font-family: sans-serif;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.modal-field-value > input{
+width: 80%;
+}
+
+.modal .row {
+  flex-wrap: nowrap;
+}
+
+.plan-info{
+  border: 1px solid #aaa;
+  border-bottom: 0;
+}
+
+.plan-info.last{
+  border-bottom: 1px solid #aaa;
+}
+
+.error {
+  color: red;
+}
+
+.sub-plans {
+  display: flex;
+}
+
+.sub-plans > div{
+  margin-right: 20px;
+  padding: 0;
+}
+
+.sub-plans > div > input{
+  margin-right: 6px;
+}
+
+.no-column {
+  border: 0;
+}
+
+.lang-lable {
+  color: #6d6c6c;
+}
+
+.removed {
+  color: red;
+  font-weight: bold;
+}
+
+.disable {
+  background: #aaa;
+}
+
+#undo-suspend {
+  margin-left: 0;
+}
+
+.modal-body {
+  font-family: sans-serif !important;
+}
+
+#profile-detail {
+  margin-top: 20px;
+}

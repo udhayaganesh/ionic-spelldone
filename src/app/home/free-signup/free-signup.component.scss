@@ -1,0 +1,78 @@
+.customBtn {
+    display: flex;
+    align-items: center;
+    background: white;
+    color: #444;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.customBtn:hover {
+    cursor: pointer;
+}
+
+span.label {
+    font-family: serif;
+    font-weight: normal;
+}
+
+span.gicon {
+    background: url('/assets/images/g-normal.png') transparent 5px 50% no-repeat;
+}
+
+span.ficon {
+    background: url('/assets/images/fb-logo.svg') transparent 5px 50% no-repeat;
+}
+
+span.icon {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    background-position: center;
+}
+
+span.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+}
+
+#signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#signup button.primary {
+    color: white;
+    background-color: #e91e63;
+    margin: 0 10px;
+    width: 85px;
+}
+
+#signup button.secondary {
+    background: #fff;
+    border: 1px solid #e91e63;
+    color: #e91e63;
+    width: 85px;
+}
+
+button:disabled {
+    background-color: #e97a9f !important;
+}
+
+.options .option {
+    justify-content: center;
+}

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{ data.message }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.description }}</p>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="1">{{ data.buttons ? data.buttons.primary : 'Confirm'}}</button>
+  <button mat-button [mat-dialog-close]="2" *ngIf="data.buttons && data.buttons.primary2">{{ data.buttons ? data.buttons.primary2 : ''}}</button>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>{{ data.buttons ? data.buttons.secondary : 'Cancel'}}</button>
+</div>

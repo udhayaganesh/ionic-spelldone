@@ -1,0 +1,44 @@
+.spinner{
+  width: 50;
+  z-index: 30;
+  margin: auto;
+  transform-origin: 50% 50%;
+}
+.dialog_overlay_wrap{
+	height: 100%;
+	width: 100%;
+  align-items: center;
+  display: flex;	
+  position: fixed;
+  z-index: 15;
+  left: 0;
+  top: 0;
+  background: #1885e23d;
+  opacity: 0.5;
+}
+
+.dialog_overlay{
+  animation: none;  
+}
+
+.hide_overlay{
+  background-color: transparent;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}

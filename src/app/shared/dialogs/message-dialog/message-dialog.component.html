@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{ data.message }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.description }}</p>  
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="sd-btn" *ngIf="data.primaryBtn" (click)="onPrimaryClick()">{{data.primaryBtn}}</button>
+  <button mat-button class="sd-btn-sec" style="margin-right: 10px;" *ngIf="data.secondaryBtn" (click)="onSecondaryClick()">{{data.secondaryBtn}}</button>
+</div>

@@ -1,0 +1,347 @@
+<div class="container-fluid" id="register-container">
+  <div class="background"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 mb-floatright">
+        <a [routerLink]="['/']" class="logo">
+          <img src="assets/images/Logo-Full-Black.png" style="width: 50px;">
+        </a>
+        <a [routerLink]="['/login']" id="login"> Already a member? Login</a>
+      </div>
+    </div>
+    <div class="row register-panel">
+
+      <div class="col-md-10 offset-md-1">
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm)">
+          <div class="card">
+            <h2>Register</h2>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-part">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <i class="material-icons mb-icon">face</i>
+                        <mat-form-field color="accent">
+                          <input type="text" matInput required placeholder="Name"
+                            formControlName="name">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <i class="material-icons mb-icon">email</i>
+                        <mat-form-field color="accent">
+                          <input type="email" matInput required placeholder="Email"
+                            formControlName="email">
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div formGroupName="passwordGroup" class="row" id="passwordGroup">
+                      <div class="col-md-6">
+                        <i class="material-icons mb-icon">lock_outline</i>
+                        <mat-form-field color="accent">
+                          <input type="password" name="password" matInput required placeholder="Password"
+                            formControlName="password">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <i class="material-icons mb-icon">lock_outline</i>
+                        <mat-form-field color="accent">
+                          <input type="password" name="confirmPassword" matInput required placeholder="Confirm Password"
+                            formControlName="confirmPassword">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-part">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="">Plan type</label>
+                        <div>
+                          <div class="plan-type">
+                            <input type="radio" name="planType" id="regional" value="Regional"
+                              formControlName="planType">
+                            <label for="regional" class="type-name">Regional</label>
+                          </div>
+                          <div class="plan-type">
+                            <input type="radio" name="planType" id="national" value="National" disabled
+                              formControlName="planType">
+                            <label for="national" class="type-name disabled-text">National
+                              (Coming soon)
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12" id="payment">
+                  <div class="row pay-row">
+                    <div class="col-md-6">
+                      <div class="payment-group">
+                        <div class="form-part">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <i class="material-icons mb-icon">face</i>
+                              <mat-form-field color="accent">
+                                <input type="text" matInput placeholder="Card Holder Name" required maxlength="50"
+                                  formControlName="cardHolderName">
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <i class="material-icons mb-icon">home</i>
+                              <mat-form-field color="accent">
+                                <input type="text" matInput placeholder="Address" required maxlength="50"
+                                  formControlName="cardAddress">
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <mat-form-field color="accent">
+                                <input type="text" matInput placeholder="City" required maxlength="50"
+                                  formControlName="cardCity">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                              <mat-form-field>
+                                <mat-select placeholder="Country" formControlName="cardCountry" required>
+                                  <mat-option *ngFor="let country of countries" [value]="country.name">
+                                    {{country.name}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <mat-form-field color="accent">
+                                <input type="text" matInput placeholder="Zip/Postal code" formControlName="addressZip"
+                                  required maxlength="6" (keypress)="validateNumber($event)">
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 card-details">
+                      <div class="payment-group">
+                        <div class="form-part">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <i class="material-icons mb-icon">credit_card</i>
+                              <mat-form-field color="accent">
+                                <input type="text" matInput placeholder="Credit Card Number" required maxlength="16"
+                                  (keypress)="validateNumber($event)" formControlName="creditCardNumber">
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-8" formGroupName="cardExpiryDate">
+                              <label class="mb-label">Expiration Date</label>
+                              <div id="exp-date">
+                                <div class="input-group mb-3 mb-input-group">
+
+                                  <select class="custom-select" id="expirationDate"
+                                    formControlName="creditCardExpirationMonth">
+
+                                    <option *ngFor="let month of months" [value]="month.value">{{month.viewValue}}
+                                    </option>
+
+                                  </select>
+                                </div>
+                                <label>/</label>
+                                <div class="input-group mb-3 mb-input-group">
+
+                                  <select class="custom-select" id="expirationYear"
+                                    formControlName="creditCardExpirationYear">
+
+                                    <option *ngFor="let year of years;let i=index;" [value]="year.value">
+                                      {{year.viewValue}}</option>
+
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-4">
+                              <label class="mb-label">CVC</label>
+                              <mat-form-field color="accent">
+                                <input type="text" matInput formControlName="securityCode" required maxlength="3"
+                                  (keypress)="validateNumber($event)">
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                          <div class="row amount-due">
+                            <div class="col-md-12">
+                              <div class="amount">Amount due: ${{getPrice()}} US/Year</div>
+                            </div>
+                          </div>
+
+                          <div class="row stripe-badge">
+                            <div class="col-sm-12" style="text-align: center">
+                              <img src="assets/languages/100-Common/images/stripe_badge.png" alt="" width="120px">
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-margintop">
+              <div class="row">
+                <div class="col-md-9 offset-md-3">
+                  <div class="row">
+                    <div class="col-md-8 terms">
+                      <mat-checkbox style="margin-left: 2px" formControlName="agreeConditions">
+                        <div style="margin-left: 8px">
+                          I agree to the
+                          <div class="term-links">
+                            <span style="color: #9c27b0; cursor: pointer; font-weight: 400;"
+                              (click)="termsandconditions()">Terms and Conditions</span>
+                            <span style="font-size: 15px">&nbsp;&nbsp;|&nbsp; &nbsp; </span>
+                            <span style="color: #9c27b0; cursor: pointer; font-weight: 400;"
+                              (click)="privacyPolicy()">Privacy Policy</span>
+                          </div>
+                        </div>
+                      </mat-checkbox>
+                    </div>
+                    <div class="col-md-3">
+                      <button mat-raised-button id="signup" class="btn btn-primary btn-round" type="submit"
+                        [disabled]="!(signUpForm.valid && signUpForm.controls.agreeConditions.value)">Sign
+                        Up
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- terms and conditions -->
+<!-- <div class="modal fade in" id="termsandconditions" tabindex="-1" role="dialog" aria-labelledby="termsandconditionsModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="termsandconditionsModal">Terms and conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe src="assets/languages/199-Other/terms-conditions.html" width="100%" height="100%"
+            frameborder="0"></iframe>
+  
+        </div>
+        <div class="modal-footer mb-modal-footer">
+          <button type="button" class="mb-button pull-right" data-dismiss="modal">Close</button>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div> -->
+
+<!-- privacy policy -->
+<!-- <div class="modal fade in" id="privacypolicy" tabindex="-1" role="dialog" aria-labelledby="privacypolicyModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="privacypolicyModal">Privacy Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe src="assets/languages/199-Other/privacy-policy.html" width="100%" height="100%"
+            frameborder="0"></iframe>
+  
+        </div>
+        <div class="modal-footer mb-modal-footer">
+          <button type="button" class="mb-button pull-right" data-dismiss="modal">Close</button>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div> -->
+
+<!-- terms and conditions -->
+<!-- <div class="modal fade in" id="registrationStatus" tabindex="-1" role="dialog" aria-labelledby="registrationStatusModal"
+    aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registrationStatusModal">Registration Status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="goToLogin()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row registration-status">
+              <div class="col-sm-3 step">
+                Account :
+              </div>
+              <div class="col-sm-7">
+                {{ accountStatus.message }}
+                <br><span *ngIf="errorMessage">{{errorMessage}}</span>
+              </div>
+              <div class="col-sm-2">
+                <i class="fa fa-check success" *ngIf="accountStatus.status" aria-hidden="true"></i>
+                <i class="fa fa-times failure" *ngIf="!accountStatus.status" aria-hidden="true"></i>
+              </div>
+            </div>
+  
+            <div class="row registration-status" *ngIf="accountStatus.status">
+              <div class="col-sm-3 step">
+                Payment :
+              </div>
+              <div class="col-sm-7">
+                {{ paymentStatus.message }}
+              </div>
+              <div class="col-sm-2">
+                <i class="fa fa-check success" *ngIf="paymentStatus.status" aria-hidden="true"></i>
+                <i class="fa fa-times failure" *ngIf="!paymentStatus.status" aria-hidden="true"></i>
+              </div>
+            </div>
+  
+          </div>
+  
+        </div>
+        <div class="modal-footer mb-modal-footer">
+          <button type="button" class="mb-button pull-right" data-dismiss="modal" (click)="goToLogin()">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div> -->

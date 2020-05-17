@@ -1,0 +1,169 @@
+.details-container {
+  padding: 0;
+  -webkit-animation-name: fadein;
+  -moz-animation-name: fadein;
+  -o-animation-name: fadein;
+  animation-name: fadein;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.field {
+  display: flex;
+  font-size: 18px;
+  padding: 15px 0 5px 0;
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.field-label {
+  font-weight: 600;
+  color: #006341;
+}
+
+.field-value {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.field-value > div {
+  /* margin: 0 5px; */
+}
+
+.word-id {
+  text-transform: capitalize;
+}
+
+.result {
+  /* margin-left: 10px; */
+  color: red;
+}
+
+.type {
+  cursor: pointer;
+  margin-right: 25px !important;
+}
+
+.type:hover {
+  color: #555;
+}
+
+.type:not(.default) {
+  color: #aaa;  
+}
+
+.type.active {
+  color: rgb(41, 117, 191);
+  border-bottom: 2px solid;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.star {
+  color: #e8e6e6;
+  cursor: pointer;
+  text-shadow: 0px 0px 2px #555;
+  font-size: 20px;
+}
+
+.favorite-icon {
+  margin-left: 20px;
+}
+
+.favorite {
+  color: gold;
+}
+
+ol {
+  padding-left: 19px;
+  margin: 0;
+}
+
+.order-index {
+  list-style-type: decimal;
+  margin-left: 5px;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: rgb(238, 49, 49);
+}
+
+.previous-attempts {
+  font-size: 25px;
+  display: flex;
+  flex-flow: row-reverse;
+  overflow: auto;
+}
+
+.previous-attempts span {
+  display: flex;
+  align-items: center;
+}
+
+.custom-btn {
+  font-weight: 600;
+  font-size: 17px !important;
+  width: 30px !important;
+  height: 30px;
+  min-width: auto;
+  border-radius: 25px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.log-date {
+  font-size: 15px;
+  background: #aaa;
+  border-radius: 10px;
+  padding: 0 5px;
+  white-space: nowrap;
+}
+
+#user-response {
+  border: 1px solid #30e4a6;
+  border-radius: 3px;
+  width: 300px;
+}
+
+#user-input button {
+  border: 0;
+  background: #f77d00;
+  margin-right: 10px;
+  width: 110px;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+}
+
+#pronunciations {
+  display: flex;
+}
+
+#pronunciations .order-index {
+  margin-right: 18px;
+}
+
+/* ----media query----- */
+/* CSS for mobile portrait mode */
+@media only screen and (max-width: 400px) {
+  #user-response {
+    margin-left: 2px;
+  }
+
+  #user-input {
+    display: block;
+  }
+}

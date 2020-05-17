@@ -1,0 +1,45 @@
+<div id="dashboard-header">
+  <div class="logo">
+    <a class="logo" [routerLink]="['/']">
+      <div id="logo-img"></div>
+      <span class="name">Spelldone</span>
+    </a>
+  </div>
+
+  <div id="toggle-menu" [hidden]="hideToggleButton" (click)="toggleNavbar()">
+    <i class="fa fa-bars link"></i>
+  </div>
+  <div class="acitons">
+    <div class="action" *ngIf="userData">
+      <a class="link hightlight" *ngIf="isProfilePage" [routerLink]="['/dashboard']">Dashboard</a>
+
+      <button id="username" class="hightlight" mat-button [matMenuTriggerFor]="menu">
+        {{userData.name}}
+        <i style="margin-left: 10px" class="fa fa-caret-down"></i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a [routerLink]="['/profile']">
+          <button mat-menu-item>
+            <i class="fa fa-user-circle action-icon"></i>
+            Profile
+          </button>
+        </a>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <i class="fa fa-sign-out action-icon"></i>
+          Logout
+        </button>
+      </mat-menu>
+
+    </div>
+
+    <!-- <div class="action link" *ngIf="userData" (click)="logout()">Logout</div> -->
+
+    <div class="action" *ngIf="!userData">
+      <a class="link" [routerLink]="['/signup']">
+        Register
+      </a>
+    </div>
+
+  </div>
+</div>

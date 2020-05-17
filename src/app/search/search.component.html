@@ -1,0 +1,11 @@
+<div id="dictionary-container">
+  <div id="search-box">
+    <input type="text" [(ngModel)]="wordId" (focus)="errorMsg=''">
+    <button class="sd-btn" (click)="getWordDetails()">Search</button>
+  </div>
+  <div class="error-msg" *ngIf="errorMsg">{{errorMsg}}</div>
+
+  <word-detail [details]="details"></word-detail>
+
+  <a [routerLink]="['/dashboard']">Dashboard</a>
+</div>

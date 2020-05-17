@@ -1,0 +1,134 @@
+<div class="details-container container-fluid" *ngIf="_details && _details.id">
+  <div class="field row" *ngIf="session===sessionType.PRACTICE">
+    <div class="field-label col-md-2">Word: </div>
+    <div class="field-value col-md-10 word-id">{{_details.id}}
+      <div class="favorite-icon" *ngIf="userData">
+        <i class="fa fa-star star" [class.favorite]="_details.isFavorite" (click)="markAsFavorite()"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" *ngIf="session===sessionType.TEST">
+    <div class="field-label col-md-2">Word: </div>
+    <div class="field-value11 col-md-3" id="user-input">
+      <input type="text" id="user-response" [(ngModel)]="userAnswer" (keydown.enter)="submitAnswer()" autofocus
+        #responseBox>
+      <div class="result" *ngIf="submitted && userAnswer !== _details.id">
+        {{ formatSentence(_details.id) }}
+      </div>
+    </div>
+    <div class="field-value col-md-4" id="user-input" style="align-items: start;">
+      <button (click)="showHint()">Hint</button>
+      <button (click)="showWord()">Show word</button>
+    </div>
+
+  </div>
+
+  <div class="field row">
+    <div class="field-label col-md-2">Language of origin: </div>
+    <div class="field-value col-md-9">
+      <ol>
+        <ng-container *ngFor="let origin of _details.languageOfOrigin; let i = index">
+          <li class="order-index" [innerHTML]="getSentence(origin)" (click)="pronunceWord()"></li>
+
+          <i class="fa fa-pencil" *ngIf="userData && userData.role==role.ADMIN"
+            (click)="editField('etymologies', {category: _details.selectedCategory, etymologiesindex: i})"></i>
+        </ng-container>
+      </ol>
+    </div>
+    <div class="col-md-1" *ngIf="userData && userData.role==role.ADMIN">
+      <i class="fa fa-plus" (click)="addField('etymologies', {category: _details.selectedCategory})"></i>
+    </div>
+  </div>
+
+  <div class="field row" [ngStyle]="{paddingBottom: 0}">
+    <div class="field-label col-md-2">Part of speech: </div>
+    <div class="field-value col-md-10">
+      <div *ngFor="let category of _details.lexicalEntries" class="type"
+        [class.default]="_details.lexicalEntries.length === 1"
+        [class.active]="_details.lexicalEntries.length > 1 && category.lexicalCategory.id===_details.selectedCategory.lexicalCategory.id"
+        (click)="setCategory(category)">
+        {{category.lexicalCategory.text}}
+      </div>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="field-label col-md-2">Pronunciations: </div>
+    <div class="field-value col-md-10">
+      <ol id="pronunciations">
+        <li class="order-index" *ngFor="let pronunciation of _details.selectedCategory.pronunciations; let i=index;">
+          {{ pronunciation.phoneticSpelling}}
+          <span (click)="playAudio($event)" *ngIf="pronunciation.audioFile" #audioelm>
+            <audio [src]="getAudioUrl(pronunciation.audioFile)">Play</audio>
+            <i class="fa fa-volume-up link"></i>
+          </span>&nbsp;&nbsp;
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="field-label col-md-2">Definition: </div>
+    <div class="field-value col-md-9">
+      <ol>
+        <ng-container *ngFor="let entry of _details.selectedCategory.entries;let entriesindex = index;">
+          <ng-container *ngFor="let sense of entry.senses;let sensesindex = index;">
+            <ng-container *ngFor="let definition of sense.definitions;let definitionsindex = index;">
+              <li class="order-index">{{formatSentence(definition)}}</li>
+              <i class="fa fa-pencil" *ngIf="userData && userData.role==role.ADMIN"
+                (click)="editField('definitions', {category: _details.selectedCategory, entriesindex: entriesindex, sensesindex: sensesindex, definitionsindex: definitionsindex})"></i>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ol>
+    </div>
+    <div class="col-md-1" *ngIf="userData && userData.role==role.ADMIN">
+      <i class="fa fa-plus" (click)="addField('definitions', {category: _details.selectedCategory})"></i>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="field-label col-md-2">Sentence: </div>
+    <div class="field-value col-md-9">
+      <ol>
+        <ng-container *ngFor="let entry of _details.selectedCategory.entries;let entriesindex = index;">
+          <ng-container *ngFor="let sense of entry.senses;let sensesindex = index;">
+            <ng-container *ngFor="let example of sense.examples;let exampleindex = index;">
+              <li class="order-index" [innerHTML]="getSentence(example.text)" (click)="pronunceWord()"></li>
+              <i class="fa fa-pencil" *ngIf="userData && userData.role==role.ADMIN"
+                (click)="editField('examples', {category: _details.selectedCategory, entriesindex: entriesindex, sensesindex: sensesindex, exampleindex: exampleindex})"></i>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ol>
+    </div>
+    <div class="col-md-1" *ngIf="userData && userData.role==role.ADMIN">
+      <i class="fa fa-plus" (click)="addField('examples', {category: _details.selectedCategory})"></i>
+    </div>
+  </div>
+
+  <div class="field row" *ngIf="session===sessionType.TEST && userData">
+    <div class="field-label col-md-2">
+      <button (click)="getPreviousResults()" class="sd-btn custom-btn" title="Previous attempts">
+        <i class="fa fa-history"></i>
+      </button>
+    </div>
+    <div class="field-value col-md-10">
+      <div class="previous-attempts">
+        <span *ngFor="let result of previousAttempts; let i = index">
+          <span class="log-date" *ngIf="i===(previousAttempts.length-1)">{{getDate(result.logdatetime)}}</span>&nbsp;
+          <i class="fa" [class.fa-times-circle]="!result.iscorrect" [class.fa-check-circle]="result.iscorrect"
+            [class.incorrect]="!result.iscorrect" [class.correct]="result.iscorrect"
+            [title]="getDate(result.logdatetime)"></i> &nbsp;
+          <span class="log-date" *ngIf="previousAttempts.length > 1 && i===0">{{getDate(result.logdatetime)}}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <span [hidden]="true" #correctAudio>
+    <audio src="assets/audio/Tink.mp3">Play</audio>
+  </span>
+
+</div>

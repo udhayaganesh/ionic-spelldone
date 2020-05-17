@@ -1,0 +1,24 @@
+#dictionary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+#search-box {
+  display: flex;
+}
+
+input {
+  width: 200px;
+  font-size: 20px;
+}
+
+button {
+  padding: 8px;
+}
+
+.error-msg {
+  color: red;
+}

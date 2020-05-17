@@ -1,0 +1,137 @@
+<div class="container-fluid profile-container">
+    <div class="row">
+        <div class="w100">
+            <app-header [hideToggleButton]="true" [isProfilePage]="true"></app-header>
+        </div>
+    </div>
+    <div class="row" *ngIf="userData">
+        <div class="col-sm-12">
+            <div id="profile-detail" class="info-block container">
+                <div class="row">
+                    <div class="col-sm-12 info-header">
+                        Account Information
+                        <div id="edit-profile" class="pull-right">
+                            <!-- <div class="glyphicon glyphicon-pencil"></div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Name:
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{userData.name}}
+                    </div>
+                </div>
+
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Email:
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{userData.email}}
+                    </div>
+                </div>
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Password:
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        *******
+                        <span class="edit-link" (click)="resetPassword()">Change</span>
+                    </div>
+                </div>
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Status:
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{userData.isActive?'ACTIVE':'INACTIVE - Please update your billing info below.'}}
+                    </div>
+                </div>
+
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Plan type:
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{ selectedPlanType }}
+                        <!-- <input type="radio" name="planType" id="regional" [value]="planType.REGIONAL"
+              [(ngModel)]="selectedPlanType"><label for="regional" class="type-name">Regional</label>
+            <input type="radio" name="planType" id="national" [value]="planType.NATIONAL"
+              [(ngModel)]="selectedPlanType"><label for="national" class="type-name">National</label> -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12">
+            <div id="billing-detail" class="info-block container">
+                <div class="row">
+                    <div class="col-5 col-md-3 info-header">
+                        Billing Details
+                    </div>
+                    <div class="col-7 col-md-9 info-header">
+                        <img src="assets/images/stripe_badge.png" alt="" width="90px">
+                    </div>
+                </div>
+
+
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Name on Card:
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{ cardDetails? cardDetails.card.name : '' }}
+                        <span class="edit-link" *ngIf="userData.isActive" (click)="changeCardDetails()">
+              Change
+            </span>
+                        <span class="edit-link" *ngIf="!userData.isActive" (click)="openCheckout(true)">
+              Add/Update
+            </span>
+                    </div>
+                </div>
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Card :
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{cardDetails? '**** **** **** ' + cardDetails.card.last4: ''}}
+                    </div>
+                </div>
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        Expiry (MM/YYYY):
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{cardDetails? cardDetails.card.exp_month + '/' + cardDetails.card.exp_year: ''}}
+                    </div>
+                </div>
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        {{ userData.isTrial? 'Trial Start Date:' : 'Subscription Date:' }}
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{subscriptionData && subscriptionData.subscriptionDate &&getDate(subscriptionData.subscriptionDate)}}
+                    </div>
+                </div>
+                <div class="row mb-field">
+                    <div class="col-5 col-md-3 field-label">
+                        {{ userData.isTrial? 'Trial End Date:' : 'Next Billing Date:' }}
+                    </div>
+                    <div class="col-7 col-md-9 field-value">
+                        {{subscriptionData && subscriptionData.nextBillingDate && getDate(subscriptionData.nextBillingDate)}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <nav-footer></nav-footer>
+    </div>
+</div>

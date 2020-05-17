@@ -1,0 +1,154 @@
+<div id="dashboard" class="container-fluid">
+    <div class="row">
+        <div class="w100">
+            <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+        </div>
+    </div>
+    <div class="row" id="dashboard-content">
+        <div id="mobile-menu-overlay" *ngIf="sidebar.isOpen" (click)="toggleSidebar()"></div>
+        <div class="" id="navbar" *ngIf="sidebar.isOpen" [@toggleSidebar] #sidebar>
+            <div id="sidebar-header">
+                <div class="logo">
+                    <a class="logo" [routerLink]="['/']">
+                        <div id="logo-img"></div>
+                    </a>
+                </div>
+                <div class="header">Modules</div>
+                <i class="fa fa-bars link" [hidden]="isFirstLoad" (click)="toggleSidebar()"></i>
+                <!--???-->
+            </div>
+            <sidebar *ngIf="rootModules" [rootModules]="rootModules" [currentSetInfo]="currentSetInfo" [isFirstLoad]="isFirstLoad" (getSets)="getSets($event, true)"></sidebar>
+        </div>
+
+        <div class="col-12" id="content" [ngSwitch]="tab" #content>
+            <div class="container-fluid h100">
+                <div id="header" class="row">
+
+                    <div class="" id="show-sidebar" *ngIf="!sidebar.isOpen">
+                        <i class="fa fa-bars link" (click)="toggleSidebar()"></i>
+                        <!--???-->
+                    </div>
+
+                    <div class="col">
+                        {{currentSetInfo? currentSetInfo.rootModule.name + " > " + currentSetInfo.module.name + " > " + currentSetInfo.level.name : 'Header'}}
+
+                        <span class="level-word-count">{{currentSetInfo? "   (" +  currentSetInfo.level.totalWords + " Words)" : ''}}</span>
+                    </div>
+
+                </div>
+
+                <ng-container *ngIf="(setList.length && setState) || (setList.length && resumeUserState)">
+                    <div id="set-list" *ngSwitchDefault class="row">
+                        <table class="state-list" cellspacing="0" border="1">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <i class="fa fa-folder"></i> Packet
+                                    </th>
+                                    <th colspan="3">
+                                        <img src="assets/images/open-book.png" width="30"> Practice
+                                    </th>
+                                    <th colspan="3">
+                                        <img src="assets/images/test.png" width="25"> Quiz
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="sub-col">(400)</th>
+                                    <th class="sub-col">Start over</th>
+                                    <th class="sub-col">Resume</th>
+                                    <th class="sub-col">Starred</th>
+                                    <th class="sub-col">Start over</th>
+                                    <th class="sub-col">Resume</th>
+                                    <th class="sub-col">Misspelled</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="set-item" *ngFor="let setItem of setList" [class.disable]="(!userData && !setItem.isFree) || (!setItem.isRegional && userData && userSubscription && userSubscription.planType === planType.REGIONAL)">
+                                    <td class="set-info">{{ setItem.name }}</td>
+                                    <!-- PRACTICE -->
+                                    <!-- practice - start from the beginning -->
+                                    <td class="set-info link" (click)="start(setItem, 'practice',0, false)">
+                                        <i class="fa fa-refresh"></i>
+                                    </td>
+
+                                    <!-- practice - start from the last word -->
+                                    <td class="set-info link" [class.disable]="!userData" (click)="start(setItem, 'practice', setState[setItem.id] && setState[setItem.id].practice && setState[setItem.id].practice.lastwordindex!==undefined? setState[setItem.id].practice.lastwordindex : 0, true)">
+                                        <div class="td-content">
+                                            <i class="fa fa-pause"></i>
+                                            <div class="count">
+                                                {{ setState[setItem.id] && setState[setItem.id].practice && setState[setItem.id].practice.lastwordindex!==undefined? setState[setItem.id].practice.lastwordindex + 1: 0}}
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <!-- practice - number of favorite words -->
+                                    <td class="set-info link" [class.disable]="!userData" (click)="startFavoriteWords(setItem, setState[setItem.id] ? setState[setItem.id].practice.favorite: null)">
+                                        <i class="fa fa-star favorite-word-icon"></i>
+                                        <div class="count">
+                                            {{ setState[setItem.id] && setState[setItem.id].practice? setState[setItem.id].practice.favorite.length : 0}}
+                                        </div>
+                                    </td>
+
+                                    <!-- TEST -->
+                                    <!-- test - start from the beginning -->
+                                    <td class="set-info link" (click)="start(setItem, 'test',0, false)">
+                                        <i class="fa fa-refresh"></i></td>
+
+                                    <!-- test - start from the last word -->
+                                    <td class="set-info link" [class.disable]="!userData" (click)="start(setItem, 'test', setState[setItem.id] && setState[setItem.id].test.lastwordindex!==undefined? setState[setItem.id].test.lastwordindex : 0, true)">
+                                        <i class="fa fa-pause"></i>
+                                        <div class="count">
+                                            {{ setState[setItem.id] && setState[setItem.id].test && setState[setItem.id].test.lastwordindex!==undefined? setState[setItem.id].test.lastwordindex + 1: 0}}
+                                        </div>
+                                    </td>
+
+                                    <!-- test - number of misspelled words -->
+                                    <td class="set-info link" [class.disable]="!userData" (click)="startMisspelledWords(setItem, setState[setItem.id]? setState[setItem.id].test.misspelled: null)">
+                                        <i class="fa fa-times"></i>
+                                        <div class="count">
+                                            {{ setState[setItem.id] && setState[setItem.id].test? setState[setItem.id].test.misspelled.length : 0}}
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div *ngSwitchCase="'play'" id="details-container">
+                        <div class="row" [hidden]="!words.length && !details">
+                            <div class="col-6" id="set-name">
+                                {{ currentSetInfo.set.name }}
+                            </div>
+                            <div class="col-6" [class.col-12]="isMobileView" id="nav-buttons">
+                                <button class="nav-btn sd-btn" (click)="next()" #nextBtn>
+                    <span class="web-view">Next</span>
+                    <i class="fa fa-arrow-circle-right link mobile-view"></i>
+                  </button>
+                                <div id="word-index">{{ (currentIndex + 1) + " / " + words.length}}</div>
+                                <button class="nav-btn sd-btn" (click)="previous()" [disabled]="currentIndex===0">
+                    <span class="web-view">Previous</span>
+                    <i class="fa fa-arrow-circle-left link mobile-view"></i>
+                  </button>
+                                <ng-container *ngIf="userData && userData.role==role.ADMIN">
+                                    <button (click)="gotoWord()" id="goto-btn">Go to</button>
+                                    <input type="text" id="gotoindex" [(ngModel)]="gotoIndex" (keydown.enter)="gotoWord()">
+                                </ng-container>
+                            </div>
+                        </div>
+                        <word-detail [details]="details" [session]="currentScreen" (gotoNext)="gotoNext()" (logStatus)="logState($event)" (addFavorite)="addFavorite($event)" (removeFavorite)="removeFavorite($event)" (edit)="edit($event)" (add)="add($event)" *ngIf="details" #worddetail>
+                        </word-detail>
+                        <div class="error-msg" *ngIf="errorMsg">{{words[currentIndex] + " - " + errorMsg}}</div>
+                        <button (click)="updateWord()" *ngIf="userData && userData.role==role.ADMIN">Save</button>
+                    </div>
+
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback-btn" *ngIf="userData && currentWord && !openFeedback" (click)="openFeedback = true;" title="Send your feedback">
+        <i class="fa fa-flag"></i>
+    </div>
+    <feedback *ngIf="openFeedback" [currentWord]="currentWord" (close)="closeFeedback()"></feedback>
+</div>

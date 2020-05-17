@@ -1,0 +1,23 @@
+<div class="actions w100">
+  <ul *ngIf="userData">
+    <li class="nav-links">
+      <a [routerLink]="['/dashboard']">
+        Dashboard
+      </a>
+    </li>
+    <li class="nav-links">
+      <a class="link" [routerLink]="['/profile']">
+        Profile
+      </a>
+    </li>
+    <li class="nav-links" (click)="logout()">Logout</li>
+  </ul>
+
+  <ul *ngIf="!userData">
+    <li class="nav-links">
+      <a class="link" [routerLink]="['/signup']">
+        Register
+      </a>
+    </li>
+  </ul>
+</div>

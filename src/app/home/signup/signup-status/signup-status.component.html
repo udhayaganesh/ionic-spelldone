@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Account status</h1>
+<div mat-dialog-content id="content">
+  <div class="step">
+    <div class="particular">Account creation</div>
+    <i class="fa"
+      [ngClass]="{'fa-check':data.account, 'fa-times': !data.account, green: data.account,'red': !data.account}"></i>
+  </div>
+  <div class="step">
+    <div class="particular">Payment</div>
+    <i class="fa"
+      [ngClass]="{'fa-check':data.payment, 'fa-times': !data.payment, green: data.payment,'red': !data.payment}"></i>
+  </div>
+
+  <div *ngIf="data.account">
+    <div>
+      Verification Email has been sent to your registered Email ID. Please verify your Email ID to continue using the
+      application.
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="sd-btn" (click)="onPrimaryClick()">Login</button>
+  <button mat-button class="sd-btn-sec" *ngIf="data.account" (click)="onSecondaryClick()">Close</button>
+</div>

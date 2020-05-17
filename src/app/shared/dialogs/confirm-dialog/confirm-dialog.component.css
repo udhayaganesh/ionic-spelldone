@@ -1,0 +1,9 @@
+.mat-dialog-actions{
+  flex-direction: row-reverse;
+}
+
+#assign-link {
+  width: 100%;
+  border: 0;
+  outline: none;
+}

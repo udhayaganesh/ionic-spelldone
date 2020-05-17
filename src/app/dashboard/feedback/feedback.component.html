@@ -1,0 +1,40 @@
+<div>
+  <div id="overlay" *ngIf="isMobileView" (click)="closeFeedback($event)"></div>
+  <div id="feedback-box">
+    <div class="header">
+      Feedback
+      <div class="fa fa-times close-feedback" (click)="closeFeedback($event)"></div>
+    </div>
+    <div class="feedback-body">
+      <!-- <div id="rating">
+        <i class="fa fa-star star" *ngFor="let i of [5,4,3,2,1]" [class.rate]="currentRate && i<=currentRate" (click)="rate($event, i)"></i>
+    </div> -->
+
+      <div class="field">
+        <div class="field-name">Word</div>
+        <div class="field-value">{{currentWord.id}}</div>
+      </div>
+      <div class="field">
+        <div class="field-name">About</div>
+        <div class="field-value">
+          <select name="" id="" [(ngModel)]="about">
+            <option [ngValue]="undefined">Select a value</option>
+            <option [ngValue]="'origin'">Language of origin</option>
+            <option [ngValue]="'pos'">Parts of speech</option>
+            <option [ngValue]="'pronunciations'">Pronunciations</option>
+            <option [ngValue]="'definition'">Definition</option>
+            <option [ngValue]="'sentence'">Sentence</option>
+          </select>
+        </div>
+      </div>
+      <div class="comment">
+        <textarea name="" id="comment" [(ngModel)]="comment"
+          placeholder="Write your comments about this word..."></textarea>
+      </div>
+      <div class="footer-btn">
+        <span class="fb-sent" *ngIf="fbSent">Thank you for your feedback.</span>
+        <button id="send" class="mb-button" (click)="sendFeedback()" [disabled]="!about || !comment">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

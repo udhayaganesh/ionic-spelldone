@@ -1,0 +1,41 @@
+<div id="sidebar-container">
+  <div class="options" *ngIf="!embedInDashboard">
+    <img src="assets/images/expandall.png" class="link" (click)="toggleModules(false)" width="30px" alt="">
+    <img src="assets/images/collapse-all.png" class="link" (click)="toggleModules(true)" width="30px" alt="">
+  </div>
+  <div id="list-container">
+    <ul *ngIf="rootModules && rootModules.length" id="module-list">
+      <li class="level-1" *ngFor="let rootModule of rootModules">
+        <div class="root-module-name title"
+          [class.active-rm]="currentSetInfo && currentSetInfo.rootModule && currentSetInfo.rootModule.id===rootModule.id"
+          (click)="toggleRootModule($event, rootModule)" id="rm-{{rootModule.id}}">
+          <div class="item-name">{{ rootModule.name }}</div>
+          <div class="item-expand"><i class="fa fa-chevron-right" [ngClass]="{'open':rootModule.expand}"></i></div>
+        </div>
+        <ul class="level-2" [class.expand]="rootModule.expand"
+          [class.loading]="(loading && rootModule.expand) || (expandAll && rootModule.expand)"
+          [class.collapseall]="rootModule.collapseAll">
+          <li *ngFor="let module of rootModule.modules">
+            <div class="root-module-name title"
+              [class.active-md]="currentSetInfo && currentSetInfo.module && currentSetInfo.module.id===module.id"
+              id="md-{{module.id}}" (click)="toggleModule($event, module)">
+              <div class="item-name">{{ module.name }}</div>
+              <div class="item-expand"><i class="fa fa-chevron-right" [ngClass]="{'open':module.expand}"></i></div>
+            </div>
+            <ul class="level-3" [class.expand]="module.expand"
+              [class.loading]="(loading && module.expand) || (expandAll && module.expand)"
+              [class.collapseall]="module.collapseAll">
+              <li *ngFor="let level of module.levels"
+                [class.active-lv]="currentSetInfo && currentSetInfo.level && currentSetInfo.level.id===level.id"
+                (click)="getSetsDetail(rootModule, module, level)">
+                <div class="level-id title">{{ level.name }}</div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <nav-footer></nav-footer>
+</div>
