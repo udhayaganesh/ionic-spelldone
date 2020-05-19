@@ -49,6 +49,22 @@ module.exports = [
         "id": "cordova-plugin-splashscreen.SplashScreenProxy",
         "pluginId": "cordova-plugin-splashscreen",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
+        "id": "cordova-plugin-googleplus.GooglePlus",
+        "pluginId": "cordova-plugin-googleplus",
+        "clobbers": [
+            "window.plugins.googleplus"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-googleplus/src/browser/GooglePlusProxy.js",
+        "id": "cordova-plugin-googleplus.GooglePlusProxy",
+        "pluginId": "cordova-plugin-googleplus",
+        "clobbers": [
+            "GooglePlus"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -59,7 +75,8 @@ module.exports.metadata =
     "cordova-plugin-ionic-webview": "4.2.1",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-splashscreen": "5.0.2"
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-googleplus": "8.5.0"
 }
 // BOTTOM OF METADATA
 });

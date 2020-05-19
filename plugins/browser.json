@@ -24,6 +24,10 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-googleplus": {
+      "WEB_APPLICATION_CLIENT_ID": "104118238943-07dttsjrua5859p4jfdu41utvi5ns8v6.apps.googleusercontent.com",
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {}

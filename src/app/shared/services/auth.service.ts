@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 import {
   Router
@@ -22,7 +23,7 @@ export class AuthService {
     private _storageService: StorageService,
     private firebaseAuth: AngularFireAuth,
     private ngZone: NgZone,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,private googlePlus: GooglePlus) {
 
   }
 
@@ -38,21 +39,44 @@ export class AuthService {
     return this.http.post(sdconfig.backendHost + "/user/create", data);
   }
 
+  signInWithGoogleMobile()
+  {
+    return new Promise((resolve, reject) => {
+    this.googlePlus.login({})
+    .then((result: any) => {
+      this.ngZone.run(() => {
+             firebase.auth().currentUser.getIdToken().then(idToken => {
+           if (result.additionalUserInfo.isNewUser) {
+             this.createUserRecord(result, idToken, OauthProvider.GOOGLE, result.additionalUserInfo.isNewUser, resolve);
+           } else {
+             resolve({
+               isNewUser: result.additionalUserInfo.isNewUser,
+               uid: result.user.uid,
+               token: idToken,
+               emailVerified: result.user.emailVerified,
+             });
+           }
+         }).catch((error) => {
+           console.log(error);
+         });
+       });
+     })
+    //.then((data) => { this.freeSignUpSuccess(data);})
+    //.then(res => console.log(res))
+    .catch(err => console.error(err))
+  });
+  }
   /* Sign in with Google */
   signInWithGoogle() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {//
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.setCustomParameters({
         prompt: 'select_account'
       });
-      firebase.auth().signInWithPopup(provider).then((result: any) => {
-        this.ngZone.run(() => {
-
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          // const token = result.credential.accessToken;
-          // The signed-in user info.
-          // const user = result.user;
-          firebase.auth().currentUser.getIdToken().then(idToken => {
+      firebase.auth().signInWithPopup(provider)
+      .then((result: any) => {
+       this.ngZone.run(() => {
+              firebase.auth().currentUser.getIdToken().then(idToken => {
             if (result.additionalUserInfo.isNewUser) {
               this.createUserRecord(result, idToken, OauthProvider.GOOGLE, result.additionalUserInfo.isNewUser, resolve);
             } else {

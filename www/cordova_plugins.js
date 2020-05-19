@@ -39,6 +39,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "navigator.splashscreen"
       ]
+    },
+    {
+      "id": "cordova-plugin-googleplus.GooglePlus",
+      "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
+      "pluginId": "cordova-plugin-googleplus",
+      "clobbers": [
+        "window.plugins.googleplus"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -47,6 +55,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-ionic-webview": "4.2.1",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-splashscreen": "5.0.2"
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-googleplus": "8.5.0"
   };
 });

@@ -24,6 +24,14 @@
 		67FD35A8F4A545CFB9F6F2A7 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFBFC4465BE4248BA4881F2 /* CDVSplashScreen.m */; };
 		91EC172C7C3B406DAE20EF2C /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 430A558AD7A64F50B1C9550B /* CDVViewController+SplashScreen.m */; };
 		E2FA98DC8D1D4238B3C0B597 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D53FD1D16B4A7DA166A673 /* CDVStatusBar.m */; };
+		35935FAF95D74FB2A74DEEFD /* GooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FC6078E1A44CB2ACA7EACC /* GooglePlus.m */; };
+		57E9A897295C45FEA8822CEB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD2251FDF754648BDF905AB /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DA7911E3D72C493EB0B07450 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1823BEA78C4AAFA00F16F2 /* CoreText.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A27558C4AAAC4AFFB30FA4EE /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C115BD774C6D41E29C427469 /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		23C7C86B010842C6B275929F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C99EC027D2C42B1B400C7A6 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D902E4900F2243C7A93CC312 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEF74E70D8740AFA7E91A7C /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B31E35A6B2ED4023AA174C65 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9762B767FAF949E88D794C0D /* libz.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
+		395538F6C24145BEB9F9E6A6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EBA668BAF427EA30196C7 /* libz.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +98,15 @@
 		0F9BE683C9E149C6A6136A44 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		56D53FD1D16B4A7DA166A673 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		30CC02BEECBD49A98161B72E /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E3FC6078E1A44CB2ACA7EACC /* GooglePlus.m */ = {isa = PBXFileReference; name = "GooglePlus.m"; path = "cordova-plugin-googleplus/GooglePlus.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		8BD7A4957E5B4FC1B006C21F /* GooglePlus.h */ = {isa = PBXFileReference; name = "GooglePlus.h"; path = "cordova-plugin-googleplus/GooglePlus.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		3BD2251FDF754648BDF905AB /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		8E1823BEA78C4AAFA00F16F2 /* CoreText.framework */ = {isa = PBXFileReference; name = "CoreText.framework"; path = "System/Library/Frameworks/CoreText.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		C115BD774C6D41E29C427469 /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		3C99EC027D2C42B1B400C7A6 /* Security.framework */ = {isa = PBXFileReference; name = "Security.framework"; path = "System/Library/Frameworks/Security.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		0EEF74E70D8740AFA7E91A7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		9762B767FAF949E88D794C0D /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		C92EBA668BAF427EA30196C7 /* libz.dylib */ = {isa = PBXFileReference; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = compiled.mach-o.dylib; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +116,13 @@
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				6D5344EFD5AC48AA90CE9052 /* WebKit.framework in Frameworks */,
+				57E9A897295C45FEA8822CEB /* AddressBook.framework in Frameworks */,
+				DA7911E3D72C493EB0B07450 /* CoreText.framework in Frameworks */,
+				A27558C4AAAC4AFFB30FA4EE /* SafariServices.framework in Frameworks */,
+				23C7C86B010842C6B275929F /* Security.framework in Frameworks */,
+				D902E4900F2243C7A93CC312 /* SystemConfiguration.framework in Frameworks */,
+				B31E35A6B2ED4023AA174C65 /* libz.tbd in Frameworks */,
+				395538F6C24145BEB9F9E6A6 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +194,13 @@
 			isa = PBXGroup;
 			children = (
 				CD12B47CCB3B47E3B72662D1 /* WebKit.framework */,
+				3BD2251FDF754648BDF905AB /* AddressBook.framework */,
+				8E1823BEA78C4AAFA00F16F2 /* CoreText.framework */,
+				C115BD774C6D41E29C427469 /* SafariServices.framework */,
+				3C99EC027D2C42B1B400C7A6 /* Security.framework */,
+				0EEF74E70D8740AFA7E91A7C /* SystemConfiguration.framework */,
+				9762B767FAF949E88D794C0D /* libz.tbd */,
+				C92EBA668BAF427EA30196C7 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,6 +245,8 @@
 				0F9BE683C9E149C6A6136A44 /* CDVViewController+SplashScreen.h */,
 				56D53FD1D16B4A7DA166A673 /* CDVStatusBar.m */,
 				30CC02BEECBD49A98161B72E /* CDVStatusBar.h */,
+				E3FC6078E1A44CB2ACA7EACC /* GooglePlus.m */,
+				8BD7A4957E5B4FC1B006C21F /* GooglePlus.h */,
 			);
 			name = Plugins;
 			path = "Spelldone/Plugins";
@@ -347,6 +380,7 @@
 				67FD35A8F4A545CFB9F6F2A7 /* CDVSplashScreen.m in Sources */,
 				91EC172C7C3B406DAE20EF2C /* CDVViewController+SplashScreen.m in Sources */,
 				E2FA98DC8D1D4238B3C0B597 /* CDVStatusBar.m in Sources */,
+				35935FAF95D74FB2A74DEEFD /* GooglePlus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +414,7 @@
 				INFOPLIST_FILE = "Spelldone/Spelldone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -403,7 +437,7 @@
 				INFOPLIST_FILE = "Spelldone/Spelldone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -448,7 +482,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				WK_WEB_VIEW_ONLY = 0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
@@ -490,7 +524,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				WK_WEB_VIEW_ONLY = 0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;

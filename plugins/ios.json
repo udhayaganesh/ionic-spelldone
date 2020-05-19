@@ -24,6 +24,10 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-googleplus": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.104118238943-07dttsjrua5859p4jfdu41utvi5ns8v6",
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {}

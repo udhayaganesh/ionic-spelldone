@@ -25,6 +25,10 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-googleplus": {
+      "PLAY_SERVICES_VERSION": "15.0.1",
+      "PACKAGE_NAME": "io.spelldone.starter"
     }
   },
   "dependent_plugins": {}

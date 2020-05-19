@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MessageDialogComponent } from 'src/app/shared/dialogs/message-dialog/message-dialog.component';
 import { FreeSignupComponent } from '../free-signup/free-signup.component';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @Component({
   templateUrl: './login.component.html',
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     private storageService: StorageService,
     private spinnerService: SpinnerService,
     private dialog: MatDialog,
-    private toastService: ToastrService) { }
+    private toastService: ToastrService,private googlePlus: GooglePlus) { }
 
   ngOnInit() {
     if (window.screen.height <= 411) {
@@ -130,11 +131,25 @@ export class LoginComponent implements OnInit {
 
   // sign in with google. this method creates an account if user email doesn't exists in Firebase.
   signInWithGoogle() {
-    this.authService.signInWithGoogle().then((data) => {
+    this.authService.signInWithGoogleMobile().then((data) => {
       this.freeSignUpSuccess(data);
     }).catch((error) => {
       console.log('Unable to sign in with Google.');
     });
+
+/*
+    this.googlePlus.login({})
+    .then((data) => {
+      this.freeSignUpSuccess(data);})
+    //.then(res => console.log(res))
+    .catch(err => console.error(err))
+
+   this.authService.signInWithGoogle().then((data) => {
+      this.freeSignUpSuccess(data);
+    }).catch((error) => {
+      console.log('Unable to sign in with Google.');
+    });
+    */
   }
 
   // sign in with google. this method creates an account if user email doesn't exists in Firebase.
