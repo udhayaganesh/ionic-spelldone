@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     private spinnerService: SpinnerService,
     private dialog: MatDialog,
     private toastService: ToastrService,private googlePlus: GooglePlus) { }
+    
 
   ngOnInit() {
     if (window.screen.height <= 411) {
@@ -154,11 +155,16 @@ export class LoginComponent implements OnInit {
 
   // sign in with google. this method creates an account if user email doesn't exists in Firebase.
   signInWithFacebook() {
-    this.authService.signInWithFacebook().then((data) => {
+    this.authService.signInWithFacebookMobile().then((data) => {
       this.freeSignUpSuccess(data);
     }).catch((error) => {
       console.log('Unable to sign in with Facebook.');
     });
+    /*this.authService.signInWithFacebook().then((data) => {
+      this.freeSignUpSuccess(data);
+    }).catch((error) => {
+      console.log('Unable to sign in with Facebook.');
+    });*/
   }
 
   signUpForTrail() {

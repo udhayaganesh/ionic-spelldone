@@ -368,6 +368,9 @@ Apache-2.0
 @ionic-native/core
 MIT
 
+@ionic-native/facebook
+MIT
+
 @ionic-native/google-plus
 MIT
 

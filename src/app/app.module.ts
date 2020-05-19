@@ -13,7 +13,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import {GooglePlus} from '@ionic-native/google-plus/ngx';
 
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+  
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './home/login/login.component';
@@ -81,7 +82,7 @@ const firebaseConfig = {
     
   providers: [
   AuthService,SpinnerService,ToastrService,HomeService, GooglePlus,
-  
+  Facebook,
   StorageService,
     StatusBar,
     SplashScreen,

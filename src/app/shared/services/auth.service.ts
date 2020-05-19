@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import {
   Router
 } from '@angular/router';
@@ -23,7 +23,7 @@ export class AuthService {
     private _storageService: StorageService,
     private firebaseAuth: AngularFireAuth,
     private ngZone: NgZone,
-    private dialog: MatDialog,private googlePlus: GooglePlus) {
+    private dialog: MatDialog,private googlePlus: GooglePlus,private fb: Facebook) {
 
   }
 
@@ -159,6 +159,92 @@ export class AuthService {
                   console.log(error);
                   reject(error);
                 });
+              } else if (result.user.email) {
+                this.emailIdNotVerified(result.user.email, resolve);
+              } else {
+                this.dialog.open(MessageDialogComponent, {
+                  width: '500px',
+                  data: {
+                    message: 'We require your Email ID to continue.',
+                    description: 'Make sure you have attached an Email ID to your Facebook account.'
+                  }
+                });
+                setTimeout(() => {
+                  resolve({});
+                });
+              }
+            }
+          }).catch((error) => {
+            // Handle error
+            console.log(error);
+          });
+
+        });
+      }).catch(function (error) {
+        // Handle Errors here.
+        reject(error);
+      });
+    });
+
+  }
+  signInWithFacebookMobile() {
+    return new Promise((resolve, reject) => {
+       
+      this.fb.login(['public_profile', 'user_friends', 'email'])
+  //.then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
+  //.catch(e => console.log('Error logging into Facebook', e));
+
+      
+      
+    .then((result: any) => {
+        this.ngZone.run(() => {
+
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          // let token = result.credential.accessToken;
+          // The signed-in user info.
+          // let user = result.user;
+          firebase.auth().currentUser.getIdToken().then(idToken => {
+
+            if (result.additionalUserInfo.isNewUser) {
+              if (result.user.emailVerified) {
+                this.createUserRecord(result, idToken, OauthProvider.FACEBOOK, result.additionalUserInfo.isNewUser, resolve);
+              } else if (result.user.email) {
+                this.sendEmailVerification(result.user.email, true, resolve);
+                /* setTimeout(() => {
+                  resolve({});
+                }, 1000); */
+              } else {
+                this.dialog.open(MessageDialogComponent, {
+                  width: '500px',
+                  data: {
+                    message: 'We require your Email ID to continue.',
+                    description: 'Make sure you have attached an Email ID to your Facebook account.'
+                  }
+                });
+                setTimeout(() => {
+                  resolve({});
+                });
+              }
+            } else {
+              if (result.user.emailVerified) {
+                this.signIn({ token: idToken }).subscribe((response: any) => {
+
+                  let data = response.json();
+                  if (data.userData) {
+                    resolve({
+                      isNewUser: result.additionalUserInfo.isNewUser,
+                      uid: result.user.uid,
+                      token: idToken,
+                      emailVerified: result.user.emailVerified,
+                    });
+                  } else {
+                    this.createUserRecord(result, idToken, OauthProvider.FACEBOOK, result.additionalUserInfo.isNewUser, resolve);
+                  }
+                }, error => {
+                  console.log(error);
+                  reject(error);
+                });
+                
               } else if (result.user.email) {
                 this.emailIdNotVerified(result.user.email, resolve);
               } else {
