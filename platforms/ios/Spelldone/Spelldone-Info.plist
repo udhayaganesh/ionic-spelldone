@@ -49,6 +49,22 @@
 		<dict>
 			<key>accounts.google.com</key>
 			<dict/>
+			<key>m.facebook.com</key>
+			<dict/>
+			<key>graph.facebook.com</key>
+			<dict/>
+			<key>api.facebook.com</key>
+			<dict/>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 		</dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
@@ -67,6 +83,25 @@
 				<string>com.googleusercontent.apps.104118238943-07dttsjrua5859p4jfdu41utvi5ns8v6</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1399600970246616</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1399600970246616</string>
+	<key>FacebookDisplayName</key>
+	<string>spelldone</string>
+	<key>FacebookHybridAppEvents</key>
+	<string>false</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
 </dict>
 </plist>

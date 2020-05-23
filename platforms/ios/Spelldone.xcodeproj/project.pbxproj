@@ -32,6 +32,7 @@
 		D902E4900F2243C7A93CC312 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEF74E70D8740AFA7E91A7C /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B31E35A6B2ED4023AA174C65 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9762B767FAF949E88D794C0D /* libz.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		395538F6C24145BEB9F9E6A6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C92EBA668BAF427EA30196C7 /* libz.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E8E1BCFCD22C4F279445D854 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 094B9AF17CAE49C5ACFAA09C /* FacebookConnectPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,8 @@
 		0EEF74E70D8740AFA7E91A7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		9762B767FAF949E88D794C0D /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		C92EBA668BAF427EA30196C7 /* libz.dylib */ = {isa = PBXFileReference; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = compiled.mach-o.dylib; explicitFileType = undefined; includeInIndex = 0; };
+		094B9AF17CAE49C5ACFAA09C /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.m"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F109C1398BA14CDF9ED90728 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.h"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,8 @@
 				30CC02BEECBD49A98161B72E /* CDVStatusBar.h */,
 				E3FC6078E1A44CB2ACA7EACC /* GooglePlus.m */,
 				8BD7A4957E5B4FC1B006C21F /* GooglePlus.h */,
+				094B9AF17CAE49C5ACFAA09C /* FacebookConnectPlugin.m */,
+				F109C1398BA14CDF9ED90728 /* FacebookConnectPlugin.h */,
 			);
 			name = Plugins;
 			path = "Spelldone/Plugins";
@@ -381,6 +386,7 @@
 				91EC172C7C3B406DAE20EF2C /* CDVViewController+SplashScreen.m in Sources */,
 				E2FA98DC8D1D4238B3C0B597 /* CDVStatusBar.m in Sources */,
 				35935FAF95D74FB2A74DEEFD /* GooglePlus.m in Sources */,
+				E8E1BCFCD22C4F279445D854 /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +420,7 @@
 				INFOPLIST_FILE = "Spelldone/Spelldone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.g2l.spelldone.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -437,7 +443,7 @@
 				INFOPLIST_FILE = "Spelldone/Spelldone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.g2l.spelldone.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -482,7 +488,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				WK_WEB_VIEW_ONLY = 0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.g2l.spelldone.test;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
@@ -524,7 +530,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				WK_WEB_VIEW_ONLY = 0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.spelldone.starter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.g2l.spelldone.test;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;

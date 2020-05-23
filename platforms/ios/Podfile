@@ -6,4 +6,7 @@ target 'C:\App Workspace\Personal\Spelldonemobileapp_try1\ionic-spelldone\platfo
 	project 'C:\App Workspace\Personal\Spelldonemobileapp_try1\ionic-spelldone\platforms\ios\Spelldone.xcodeproj'
 	pod 'GoogleSignIn', '~> 5.0.2'
 	pod 'GoogleUtilities', '~> 6.6'
+	pod 'FBSDKCoreKit', '5.15.0'
+	pod 'FBSDKLoginKit', '5.15.0'
+	pod 'FBSDKShareKit', '5.15.0'
 end

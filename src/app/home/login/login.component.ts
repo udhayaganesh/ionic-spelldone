@@ -1,6 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeService } from '../home.service';
+import { Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { SpinnerService } from 'src/app/spinner/spinner.service';
@@ -12,7 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MessageDialogComponent } from 'src/app/shared/dialogs/message-dialog/message-dialog.component';
 import { FreeSignupComponent } from '../free-signup/free-signup.component';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-
+import {Facebook} from '@ionic-native/facebook';
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     private storageService: StorageService,
     private spinnerService: SpinnerService,
     private dialog: MatDialog,
-    private toastService: ToastrService,private googlePlus: GooglePlus) { }
+    private toastService: ToastrService,
+    private platform: Platform) { }
     
 
   ngOnInit() {
@@ -87,8 +89,9 @@ export class LoginComponent implements OnInit {
 
   setUserDataAndNavigate(token: string) {
     console.log(token);
+    this.toastService.show("verifying TOken::::"+token);
     this.authService.signIn({ token }).subscribe((response: any) => {
-
+      this.toastService.show("TOken validated::::"+response.json());
       let data = response.json();
       this.storageService.setUserToken(token);
       data.userData.userLastState = data.userLastState;
@@ -102,6 +105,7 @@ export class LoginComponent implements OnInit {
       }
 
     }, error => {
+      this.toastService.show("Error calling webservice::::"+error);
       console.log(error);
       this.spinnerService.hide();
     });
@@ -132,39 +136,38 @@ export class LoginComponent implements OnInit {
 
   // sign in with google. this method creates an account if user email doesn't exists in Firebase.
   signInWithGoogle() {
-    this.authService.signInWithGoogleMobile().then((data) => {
-      this.freeSignUpSuccess(data);
-    }).catch((error) => {
-      console.log('Unable to sign in with Google.');
-    });
-
-/*
-    this.googlePlus.login({})
-    .then((data) => {
-      this.freeSignUpSuccess(data);})
-    //.then(res => console.log(res))
-    .catch(err => console.error(err))
-
-   this.authService.signInWithGoogle().then((data) => {
-      this.freeSignUpSuccess(data);
-    }).catch((error) => {
-      console.log('Unable to sign in with Google.');
-    });
-    */
+    if(this.platform.is('desktop') || this.platform.is('mobileweb')) {
+      this.authService.signInWithGoogle().then((data) => {
+        this.freeSignUpSuccess(data);
+      }).catch((error) => {
+        console.log('Unable to sign in with Google.');
+      });
+    } else {
+      this.authService.signInWithGoogleMobile().then((data) => {
+        this.freeSignUpSuccess(data);
+      }).catch((error) => {
+        this.toastService.error('Unable to sign in with Google!');
+        console.log('Unable to sign in with Google.');
+      });
+    }
   }
 
   // sign in with google. this method creates an account if user email doesn't exists in Firebase.
   signInWithFacebook() {
-    this.authService.signInWithFacebookMobile().then((data) => {
+    if(this.platform.is('desktop') || this.platform.is('mobileweb')) {
+      this.authService.signInWithFacebook().then((data) => {
+        this.freeSignUpSuccess(data);
+      }).catch((error) => {
+        console.log('Unable to sign in with Google.');
+      });
+    } else {
+   this.authService.signInWithFacebookMobile().then((data) => {
       this.freeSignUpSuccess(data);
     }).catch((error) => {
       console.log('Unable to sign in with Facebook.');
+      this.toastService.error('Unable to sign in with Facebook!');
     });
-    /*this.authService.signInWithFacebook().then((data) => {
-      this.freeSignUpSuccess(data);
-    }).catch((error) => {
-      console.log('Unable to sign in with Facebook.');
-    });*/
+  }
   }
 
   signUpForTrail() {

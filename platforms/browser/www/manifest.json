@@ -3,7 +3,7 @@
   "display": "standalone",
   "name": "Spelldone",
   "short_name": "Spelldone",
-  "version": "io.spelldone.starter",
+  "version": "com.g2l.spelldone.test",
   "description": "An awesome Ionic/Cordova app.",
   "author": "Ionic Framework Team",
   "icons": [],

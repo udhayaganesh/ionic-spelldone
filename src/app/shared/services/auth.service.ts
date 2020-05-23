@@ -2,6 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { ToastrService } from 'ngx-toastr';
 import {
   Router
 } from '@angular/router';
@@ -23,7 +24,7 @@ export class AuthService {
     private _storageService: StorageService,
     private firebaseAuth: AngularFireAuth,
     private ngZone: NgZone,
-    private dialog: MatDialog,private googlePlus: GooglePlus,private fb: Facebook) {
+    private dialog: MatDialog,private googlePlus: GooglePlus,private fb: Facebook,private toastService: ToastrService,) {
 
   }
 
@@ -32,6 +33,7 @@ export class AuthService {
   }
 
   signIn(data: any) {
+    this.toastService.show("calling webservice"+sdconfig.backendHost + "/user/signin");
     return this.http.get(sdconfig.backendHost + "/user/signin", { params: data });
   }
 
@@ -39,34 +41,41 @@ export class AuthService {
     return this.http.post(sdconfig.backendHost + "/user/create", data);
   }
 
+
   signInWithGoogleMobile()
   {
     return new Promise((resolve, reject) => {
-    this.googlePlus.login({})
-    .then((result: any) => {
-      this.ngZone.run(() => {
-             firebase.auth().currentUser.getIdToken().then(idToken => {
-           if (result.additionalUserInfo.isNewUser) {
-             this.createUserRecord(result, idToken, OauthProvider.GOOGLE, result.additionalUserInfo.isNewUser, resolve);
-           } else {
-             resolve({
-               isNewUser: result.additionalUserInfo.isNewUser,
-               uid: result.user.uid,
-               token: idToken,
-               emailVerified: result.user.emailVerified,
-             });
-           }
-         }).catch((error) => {
-           console.log(error);
-         });
-       });
-     })
-    //.then((data) => { this.freeSignUpSuccess(data);})
-    //.then(res => console.log(res))
-    .catch(err => console.error(err))
-  });
-  }
+      return this.googlePlus.login({
+        //'scopes': 'profile',
+        'webClientId': '104118238943-07dttsjrua5859p4jfdu41utvi5ns8v6.apps.googleusercontent.com',
+        'offline': true
+      })
+    .then( res => {
+      const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+      firebase.auth().signInWithCredential(googleCredential)
+    .then( response => {
+      console.log("Firebase success: " + JSON.stringify(response));
+      if (response.additionalUserInfo.isNewUser) {
+          this.createUserRecord(response, res.idToken, OauthProvider.GOOGLE, response.additionalUserInfo.isNewUser, resolve);
+        } else {
+          resolve({
+            isNewUser: response.additionalUserInfo.isNewUser,
+            uid: response.user.uid,
+            token: res.idToken,
+            emailVerified: response.user.emailVerified,
+          })
+        }
+        //resolve(response)
+    });
+}, err => {
+  console.error("Error: ", err)
+  reject(err);
+});
+});
+}
+
   /* Sign in with Google */
+
   signInWithGoogle() {
     return new Promise((resolve, reject) => {//
       let provider = new firebase.auth.GoogleAuthProvider();
@@ -188,93 +197,97 @@ export class AuthService {
 
   }
   signInWithFacebookMobile() {
-    return new Promise((resolve, reject) => {
-       
-      this.fb.login(['public_profile', 'user_friends', 'email'])
-  //.then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
-  //.catch(e => console.log('Error logging into Facebook', e));
-
-      
-      
-    .then((result: any) => {
-        this.ngZone.run(() => {
-
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          // let token = result.credential.accessToken;
-          // The signed-in user info.
-          // let user = result.user;
-          firebase.auth().currentUser.getIdToken().then(idToken => {
-
-            if (result.additionalUserInfo.isNewUser) {
-              if (result.user.emailVerified) {
-                this.createUserRecord(result, idToken, OauthProvider.FACEBOOK, result.additionalUserInfo.isNewUser, resolve);
-              } else if (result.user.email) {
-                this.sendEmailVerification(result.user.email, true, resolve);
-                /* setTimeout(() => {
-                  resolve({});
-                }, 1000); */
+      return new Promise((resolve, reject) => {
+        this.fb.login(['email']).then( response => {
+const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+firebase.auth().signInWithCredential(facebookCredential).then((result: any) => {
+          this.ngZone.run(() => {
+  
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            // let token = result.credential.accessToken;
+            // The signed-in user info.
+            // let user = result.user;
+            firebase.auth().currentUser.getIdToken().then(idToken => {
+  
+              if (result.additionalUserInfo.isNewUser) {
+                if (result.user.emailVerified) {
+                  this.createUserRecord(result, idToken, OauthProvider.FACEBOOK, result.additionalUserInfo.isNewUser, resolve);
+                } else if (result.user.email) {
+                  this.sendEmailVerification(result.user.email, true, resolve);
+                  /* setTimeout(() => {
+                    resolve({});
+                  }, 1000); */
+                } else {
+                  this.dialog.open(MessageDialogComponent, {
+                    width: '500px',
+                    data: {
+                      message: 'We require your Email ID to continue.',
+                      description: 'Make sure you have attached an Email ID to your Facebook account.'
+                    }
+                  });
+                  setTimeout(() => {
+                    resolve({});
+                  });
+                }
               } else {
-                this.dialog.open(MessageDialogComponent, {
-                  width: '500px',
-                  data: {
-                    message: 'We require your Email ID to continue.',
-                    description: 'Make sure you have attached an Email ID to your Facebook account.'
-                  }
-                });
-                setTimeout(() => {
-                  resolve({});
-                });
+                if (result.user.emailVerified) {
+                  this.signIn({ token: idToken }).subscribe((response: any) => {
+  
+                    let data = response.json();
+                    if (data.userData) {
+                      resolve({
+                        isNewUser: result.additionalUserInfo.isNewUser,
+                        uid: result.user.uid,
+                        token: idToken,
+                        emailVerified: result.user.emailVerified,
+                      });
+                    } else {
+                      this.createUserRecord(result, idToken, OauthProvider.FACEBOOK, result.additionalUserInfo.isNewUser, resolve);
+                    }
+                  }, error => {
+                    console.log(error);
+                    reject(error);
+                  });
+                } else if (result.user.email) {
+                  this.emailIdNotVerified(result.user.email, resolve);
+                } else {
+                  this.dialog.open(MessageDialogComponent, {
+                    width: '500px',
+                    data: {
+                      message: 'We require your Email ID to continue.',
+                      description: 'Make sure you have attached an Email ID to your Facebook account.'
+                    }
+                  });
+                  setTimeout(() => {
+                    resolve({});
+                  });
+                }
               }
-            } else {
-              if (result.user.emailVerified) {
-                this.signIn({ token: idToken }).subscribe((response: any) => {
-
-                  let data = response.json();
-                  if (data.userData) {
-                    resolve({
-                      isNewUser: result.additionalUserInfo.isNewUser,
-                      uid: result.user.uid,
-                      token: idToken,
-                      emailVerified: result.user.emailVerified,
-                    });
-                  } else {
-                    this.createUserRecord(result, idToken, OauthProvider.FACEBOOK, result.additionalUserInfo.isNewUser, resolve);
-                  }
-                }, error => {
-                  console.log(error);
-                  reject(error);
-                });
-                
-              } else if (result.user.email) {
-                this.emailIdNotVerified(result.user.email, resolve);
-              } else {
-                this.dialog.open(MessageDialogComponent, {
-                  width: '500px',
-                  data: {
-                    message: 'We require your Email ID to continue.',
-                    description: 'Make sure you have attached an Email ID to your Facebook account.'
-                  }
-                });
-                setTimeout(() => {
-                  resolve({});
-                });
-              }
-            }
-          }).catch((error) => {
-            // Handle error
-            console.log(error);
+            }).catch((error) => {
+              // Handle error
+              console.log(error);
+            });
+  
           });
-
+        }).catch(function (error) {
+          // Handle Errors here.
+          reject(error);
         });
-      }).catch(function (error) {
-        // Handle Errors here.
-        reject(error);
+        }).catch((error) => { console.log(error) });
       });
-    });
-
-  }
-
-  createUserRecord(result: any, idToken: string, provider: string, isNewUser: boolean, resolve: any) {
+  
+    }
+    
+     /* return this.fb.login(['email']).then( response => {
+          const facebookCredential = firebase.auth.FacebookAuthProvider
+            .credential(response.authResponse.accessToken);
+          firebase.auth().signInWithCredential(facebookCredential)
+            .then( success => { 
+              console.log("Firebase success: " + JSON.stringify(success)); 
+            });
+        }).catch((error) => { console.log(error) });*/
+   
+   createUserRecord(result: any, idToken: string, provider: string, isNewUser: boolean, resolve: any) {
     this.createUser({
       customer: { isTrial: true },
       idToken,
